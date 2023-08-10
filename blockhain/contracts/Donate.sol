@@ -26,7 +26,7 @@ contract Donate {
      /// Validates that the charity index number provided is a valid one.
     /// The target charity index to validate. Indexes start from 0 and increment by 1.
     modifier validateCharity(uint256 charityIndex) {
-        require(charityIndex <= charityAddresses.length - 1, 'Invalid charity index.');
+        require(charityIndex <= charityAddresses.length, 'Invalid charity index.');
         _;
     }
 
@@ -44,9 +44,10 @@ contract Donate {
     );
 
     function deposit(address payable destinationAddress, uint256 charityIndex, uint256 donationAmount) public validateDestination(destinationAddress)
-    validateTransferAmount() validateUserBalance (donationAmount) validateCharity(charityIndex) payable {
+    validateTransferAmount() validateCharity(charityIndex) payable {
       
-        charityAddresses[charityIndex].transfer(donationAmount);
+        // charityAddresses[charityIndex].transfer(donationAmount);
+        destinationAddress.transfer(donationAmount);
 
         emit Donation(msg.sender, donationAmount);
 

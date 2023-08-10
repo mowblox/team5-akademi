@@ -3,23 +3,22 @@ import { ethers } from "hardhat";
 
 describe("Events", function () {
   async function deployOneYearLoanFixture() {
-    const [owner, otherAccount] = await ethers.getSigners();
+    const [owner, donationAddress] = await ethers.getSigners();
     const Donate = await ethers.getContractFactory("Donate");
     const donate = await Donate.deploy();
 
-    return { donate, owner, otherAccount };
+    return { donate, owner, donationAddress };
   }
 
   it("Should deposit donation", async function () {
-    const { donate, owner } = await loadFixture(deployOneYearLoanFixture);
-
-    const destinationAddress = "";
+    const { donate, owner, donationAddress } = await loadFixture(deployOneYearLoanFixture);
     const charityIndex = 0;
-    const donationAmount = 200;
+    const donationAmount = ethers.parseEther("10");
     await donate.deposit(
-      destinationAddress,
+      donationAddress,
       charityIndex,
-      donationAmount.toString()
+      donationAmount,
+      {value: donationAmount}
     );
   });
 });
