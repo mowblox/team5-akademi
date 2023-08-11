@@ -1,0 +1,6 @@
+DONOR APP SPECS
+1. Orgs should be able to create account
+2. Donors can decide to create an account or proceed anonymously
+3. Donors should be able to make their donations and track it as well
+4. Orgs should be able to see the amount donated together with the donors details if the donor is registered on the platform
+5. Orgs should be able to withdraw the donations
