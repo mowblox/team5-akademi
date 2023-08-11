@@ -7,7 +7,7 @@ async function main() {
 
   const donate = await ethers.deployContract("Donate");
 
-  console.log("Loan address:", await donate.getAddress());
+  console.log("Donate address:", await donate.getAddress());
 }
 
 main()
